@@ -1,34 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VeloTech — Secure Projects. Proven Delivery.</title>
-  <meta name="description" content="VeloTech helps organisations across Fiji and the Pacific make secure IT and cybersecurity decisions, then deliver projects with clear outcomes and strong governance." />
+  <meta name="description" content="VeloTech helps organisations across Fiji Islands and the wider Pacific assess, design and implement cybersecurity and IT solutions with vendor-agnostic advice and practical delivery support." />
 
-  <!-- Font (kept clean + modern like ClarityPac style) -->
+  <!-- Font (same clean style as ClarityPac) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#f6f7fb;
       --card:#ffffff;
-      --text:#111827;
-      --muted:#5b6476;
-      --border:#e8ecf5;
+      --text:#0f172a;
+      --muted:#5b6475;
+      --border:rgba(15,23,42,.10);
+      --shadow: 0 18px 50px rgba(17,24,39,.10);
+      --shadow-soft: 0 12px 28px rgba(17,24,39,.08);
 
-      /* keep your current accent */
+      /* ClarityPac-like indigo/purple */
       --accent:#4b5cff;
-      --accent-2:#7c3aed; /* subtle secondary */
-      --accent-soft: rgba(75, 92, 255, 0.10);
-      --shadow: 0 18px 45px rgba(18,24,40,.08);
-      --shadow2: 0 10px 30px rgba(18,24,40,.10);
+      --accent-2:#6d5bff;
+      --accent-soft: rgba(75,92,255,.10);
+      --accent-border: rgba(75,92,255,.25);
 
-      --radius: 18px;
-      --radius2: 22px;
-      --max: 1120px;
+      --radius:18px;
+      --radius-lg:24px;
+
+      --max:1100px;
     }
 
     *{box-sizing:border-box}
@@ -36,406 +38,447 @@
     body{
       margin:0;
       font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 15% 0%, rgba(75,92,255,.10), transparent 55%),
-                  radial-gradient(900px 550px at 90% 0%, rgba(124,58,237,.08), transparent 60%),
-                  var(--bg);
       color:var(--text);
+      background:
+        radial-gradient(1100px 460px at 15% -10%, rgba(75,92,255,.20), transparent 60%),
+        radial-gradient(900px 420px at 90% 10%, rgba(109,91,255,.16), transparent 60%),
+        linear-gradient(180deg, #f8f9ff, var(--bg) 55%, #f4f6ff);
     }
 
     a{color:inherit; text-decoration:none}
-    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
 
     /* NAV */
     header{
-      position:sticky; top:0; z-index:999;
-      backdrop-filter:saturate(180%) blur(10px);
-      background:rgba(246,247,251,.75);
-      border-bottom:1px solid rgba(232,236,245,.9);
+      position:sticky; top:0; z-index:50;
+      background: rgba(248,249,255,.78);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:18px;
+      height:76px;
     }
 
-    /* FIX #1: logo area always visible and never collapses on mobile */
-    .nav-left{
+    .brand{
       display:flex; align-items:center; gap:12px;
-      min-width: 180px; /* prevents “disappearing” in mobile layouts */
-      flex: 0 0 auto;
+      min-width: 180px;
     }
 
-    /* FIX #2: crisp logo sizing (no blur from incorrect scaling) */
-    .brand-logo{
+    /* IMPORTANT: logo stays visible on mobile */
+    .brand img{
       display:block;
-      height:44px;            /* desktop height */
+      height:46px;
       width:auto;
-      max-width: 170px;
+      max-width:220px;
       image-rendering:auto;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
-      -webkit-backface-visibility:hidden;
-      backface-visibility:hidden;
-      -webkit-font-smoothing: antialiased;
-      /* helps some browsers render downscaled images sharper */
-      image-rendering: -webkit-optimize-contrast;
     }
 
-    .nav-links-wrapper{display:flex; align-items:center; gap:16px}
     .nav-links{
       display:flex; align-items:center; gap:22px;
-      padding:0; margin:0; list-style:none;
       font-weight:500;
-      color: #3b4152;
+      color:rgba(15,23,42,.78);
+      font-size:14px;
+      white-space:nowrap;
     }
     .nav-links a{
       padding:10px 8px;
-      border-radius: 10px;
-      transition: background .15s ease, color .15s ease;
+      border-radius:12px;
     }
-    .nav-links a:hover{
-      background: rgba(75,92,255,.08);
-      color: #1b2340;
-    }
+    .nav-links a:hover{background: rgba(75,92,255,.08); color:rgba(15,23,42,.92);}
 
-    .btn-primary{
+    .btn{
       display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 16px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent), #6b7bff);
-      color:#fff;
+      border-radius:999px;
+      padding:12px 16px;
       font-weight:600;
-      box-shadow: var(--shadow2);
-      border:1px solid rgba(75,92,255,.25);
-      white-space: nowrap;
+      font-size:14px;
+      border:1px solid transparent;
+      cursor:pointer;
+      transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+      user-select:none;
     }
-    .btn-primary:hover{filter:brightness(1.02)}
+    .btn:active{transform: translateY(1px);}
+    .btn-primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color:#fff;
+      box-shadow: 0 12px 28px rgba(75,92,255,.26);
+    }
+    .btn-primary:hover{box-shadow: 0 14px 34px rgba(75,92,255,.30);}
+    .btn-ghost{
+      background: rgba(255,255,255,.9);
+      border: 1px solid rgba(15,23,42,.12);
+      color: rgba(15,23,42,.88);
+    }
+    .btn-ghost:hover{background:#fff; box-shadow: var(--shadow-soft);}
 
-    .nav-toggle{
+    /* Mobile nav */
+    .burger{
       display:none;
       width:44px; height:44px;
-      border-radius:12px;
-      border:1px solid rgba(232,236,245,.9);
-      background:#fff;
-      box-shadow: 0 10px 25px rgba(18,24,40,.06);
+      border-radius:14px;
+      border:1px solid rgba(15,23,42,.12);
+      background: rgba(255,255,255,.85);
+      align-items:center; justify-content:center;
       cursor:pointer;
-      position:relative;
     }
-    .nav-toggle span{
-      position:absolute; left:12px; right:12px; height:2px;
-      background:#2b3347; border-radius:2px;
+    .burger span{
+      display:block; width:18px; height:2px; background:rgba(15,23,42,.72); position:relative;
     }
-    .nav-toggle span:nth-child(1){top:15px}
-    .nav-toggle span:nth-child(2){top:21px}
-    .nav-toggle span:nth-child(3){top:27px}
+    .burger span::before,.burger span::after{
+      content:""; position:absolute; left:0; width:18px; height:2px; background:rgba(15,23,42,.72);
+    }
+    .burger span::before{top:-6px}
+    .burger span::after{top:6px}
+
+    .mobile-panel{
+      display:none;
+      padding: 10px 0 18px;
+    }
+    .mobile-panel a{
+      display:block;
+      padding:12px 12px;
+      border-radius:14px;
+      color: rgba(15,23,42,.86);
+      font-weight:600;
+      font-size:14px;
+    }
+    .mobile-panel a:hover{background: rgba(75,92,255,.08);}
 
     /* HERO */
     .hero{
-      padding:62px 0 28px;
+      padding: 46px 0 10px;
     }
     .hero-grid{
       display:grid;
-      grid-template-columns: 1.2fr .9fr;
-      gap:26px;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 28px;
       align-items:start;
+      padding-top: 18px;
     }
-    .kicker{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      padding:8px 12px;
+    .pill{
+      display:inline-flex; gap:10px; align-items:center;
+      padding: 10px 14px;
       border-radius:999px;
-      background: rgba(17,24,39,.04);
-      border:1px solid rgba(232,236,245,.9);
-      color:#3b4152;
-      font-size:12px;
-      letter-spacing:.14em;
+      background: rgba(255,255,255,.70);
+      border:1px solid rgba(15,23,42,.10);
+      color: rgba(15,23,42,.66);
+      font-weight:600;
+      letter-spacing:.18em;
       text-transform:uppercase;
+      font-size:12px;
+      box-shadow: 0 8px 24px rgba(17,24,39,.06);
     }
     h1{
-      font-size:54px;
-      line-height:1.05;
-      margin:16px 0 14px;
-      letter-spacing:-.03em;
+      margin: 16px 0 10px;
+      font-size: 52px;
+      line-height: 1.05;
+      letter-spacing:-.02em;
     }
-    .accent{
-      color: var(--accent);
-      text-shadow: 0 10px 40px rgba(75,92,255,.18);
-    }
+    .accent-word{color: var(--accent);}
     .lead{
-      color: var(--muted);
-      font-size:16px;
-      line-height:1.6;
-      margin:0 0 18px;
-      max-width: 56ch;
+      margin: 12px 0 18px;
+      color: rgba(15,23,42,.66);
+      font-size: 16px;
+      line-height:1.7;
+      max-width: 54ch;
     }
-    .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
-    .btn-secondary{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 16px;
-      border-radius:999px;
-      background:#fff;
-      color:#24304a;
-      border:1px solid rgba(75,92,255,.25);
-      font-weight:600;
-      box-shadow: 0 12px 30px rgba(18,24,40,.05);
-    }
-    .btn-secondary:hover{background: rgba(75,92,255,.05)}
-    .fineprint{
-      margin-top:14px;
-      color: #6b7280;
-      font-size:13px;
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin: 18px 0 12px;}
+    .subtle{
+      color: rgba(15,23,42,.55);
+      font-size: 13px;
+      margin-top: 10px;
     }
 
-    .snapshot{
-      background: var(--card);
-      border:1px solid rgba(232,236,245,.95);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      padding:22px 22px;
+    /* Cards */
+    .card{
+      background: rgba(255,255,255,.85);
+      border: 1px solid rgba(15,23,42,.10);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-soft);
     }
-    .snapshot .title{
-      color:#64748b;
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      font-weight:700;
-      margin-bottom:10px;
+    .snapshot{
+      padding: 22px;
+    }
+    .kicker{
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(15,23,42,.55);
+      font-weight:800;
+      margin-bottom: 10px;
     }
     .snapshot h3{
-      margin:0 0 10px;
-      font-size:18px;
+      margin: 0 0 10px;
+      font-size: 18px;
       letter-spacing:-.01em;
     }
-    .snapshot p{margin:0 0 12px; color:var(--muted); line-height:1.55}
-    .bullets{
+    .snapshot p{
+      margin: 0 0 12px;
+      color: rgba(15,23,42,.64);
+      line-height:1.65;
+      font-size: 14px;
+    }
+    ul.clean{
       margin: 0;
       padding-left: 18px;
-      color:#3b4152;
-      line-height:1.65;
+      color: rgba(15,23,42,.70);
+      line-height:1.75;
+      font-size: 14px;
     }
-    .bullets li{margin:6px 0}
-    .bullets li::marker{color: var(--accent)}
+    ul.clean li::marker{color: var(--accent);}
 
-    /* SECTIONS */
-    section{padding:54px 0}
-    .section-title{
-      font-size:28px;
+    /* Section styling */
+    section{padding: 56px 0;}
+    .sec-title{
+      font-size: 28px;
       letter-spacing:-.02em;
-      margin:0 0 10px;
+      margin: 0 0 8px;
     }
-    .section-sub{
-      margin:0;
-      color:var(--muted);
-      line-height:1.6;
-      max-width: 80ch;
+    .sec-sub{
+      margin: 0 0 22px;
+      color: rgba(15,23,42,.62);
+      max-width: 75ch;
+      line-height:1.7;
     }
-
-    .cards-3{
+    .grid-3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap:18px;
-      margin-top:22px;
+      gap: 18px;
     }
-    .card{
-      background: var(--card);
-      border:1px solid rgba(232,236,245,.95);
-      border-radius: var(--radius);
-      padding:18px 18px;
-      box-shadow: 0 12px 35px rgba(18,24,40,.06);
-      min-height: 160px;
-    }
-    .card .eyebrow{
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:#64748b;
-      font-weight:700;
-      margin-bottom:8px;
-    }
-    .card h4{
-      margin:0 0 8px;
-      font-size:18px;
-    }
-    .card p{
-      margin:0;
-      color:var(--muted);
-      line-height:1.55;
-    }
-
-    .inline-bullets{
-      margin:10px 0 0;
-      padding-left:18px;
-      color:#3b4152;
-      line-height:1.6;
-    }
-    .inline-bullets li{margin:6px 0}
-    .inline-bullets li::marker{color: var(--accent)}
-
-    /* CONTACT */
-    .contact-grid{
+    .grid-2{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:18px;
-      margin-top:20px;
+      gap: 18px;
+    }
+    .tile{
+      padding: 20px;
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(15,23,42,.10);
+      box-shadow: 0 10px 24px rgba(17,24,39,.06);
+    }
+    .tile .tag{
+      display:inline-flex;
+      padding:6px 10px;
+      border-radius:999px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      color: rgba(15,23,42,.82);
+      font-weight:700;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .tile h4{
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing:-.01em;
+    }
+    .tile p{
+      margin: 0 0 10px;
+      color: rgba(15,23,42,.64);
+      line-height:1.7;
+      font-size: 14px;
+    }
+    .tile ul{
+      margin:0;
+      padding-left: 18px;
+      color: rgba(15,23,42,.70);
+      line-height:1.8;
+      font-size: 14px;
+    }
+    .tile ul li::marker{color: var(--accent);}
+
+    /* Products & Solutions: stacked boxes feel */
+    .product-stack{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .product-box{
+      padding: 20px;
+      border-radius: var(--radius);
+      background:
+        radial-gradient(520px 200px at 20% 0%, rgba(75,92,255,.14), transparent 60%),
+        rgba(255,255,255,.86);
+      border: 1px solid rgba(15,23,42,.10);
+      box-shadow: 0 12px 26px rgba(17,24,39,.06);
+      min-height: 260px;
+    }
+    .product-box h4{
+      margin:0 0 8px;
+      font-size: 16px;
+      letter-spacing:-.01em;
+    }
+    .product-box .desc{
+      margin:0 0 12px;
+      color: rgba(15,23,42,.62);
+      font-size: 14px;
+      line-height:1.7;
+    }
+
+    /* Customers: industry listing only */
+    .industry-list{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .industry-pill{
+      padding: 12px 12px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(15,23,42,.10);
+      color: rgba(15,23,42,.76);
+      font-weight: 600;
+      font-size: 13px;
+      box-shadow: 0 10px 22px rgba(17,24,39,.05);
+      text-align:center;
+    }
+
+    /* Contact / Let's Talk layout: form LEFT, details RIGHT */
+    .contact-wrap{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
       align-items:start;
     }
-    .panel{
-      background:#fff;
-      border:1px solid rgba(232,236,245,.95);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      padding:18px;
+    form{
+      display:grid;
+      gap: 12px;
     }
-
-    form{display:grid; gap:12px; margin-top:6px}
-    .field{
-      display:grid; gap:8px;
+    label{
+      font-size: 13px;
+      color: rgba(15,23,42,.72);
+      font-weight: 600;
     }
-    label{font-size:13px; color:#3b4152; font-weight:600}
-    input, textarea, select{
-      font: inherit;
+    input, textarea{
+      width:100%;
+      padding: 12px 12px;
       border-radius: 14px;
-      border:1px solid rgba(232,236,245,.95);
-      background:#fff;
-      padding:12px 12px;
+      border: 1px solid rgba(15,23,42,.14);
+      background: rgba(255,255,255,.9);
       outline:none;
-      box-shadow: 0 10px 25px rgba(18,24,40,.04);
+      font-family: inherit;
+      font-size: 14px;
+      color: rgba(15,23,42,.88);
     }
-    textarea{min-height:110px; resize:vertical}
-    input:focus, textarea:focus, select:focus{
+    textarea{min-height: 120px; resize: vertical;}
+    input:focus, textarea:focus{
       border-color: rgba(75,92,255,.45);
-      box-shadow: 0 0 0 5px rgba(75,92,255,.10);
+      box-shadow: 0 0 0 4px rgba(75,92,255,.12);
     }
-
-    .form-actions{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    .small-muted{font-size:13px; color:#6b7280; line-height:1.5}
-    .success{
+    .thanks{
       display:none;
-      margin-top:10px;
-      padding:12px 14px;
-      border-radius: 14px;
-      border:1px solid rgba(16,185,129,.25);
-      background: rgba(16,185,129,.08);
-      color:#064e3b;
-      font-weight:600;
-    }
-    .error{
-      display:none;
-      margin-top:10px;
-      padding:12px 14px;
-      border-radius: 14px;
-      border:1px solid rgba(239,68,68,.25);
-      background: rgba(239,68,68,.08);
-      color:#7f1d1d;
-      font-weight:600;
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(34,197,94,.30);
+      background: rgba(34,197,94,.08);
+      color: rgba(15,23,42,.82);
+      font-weight: 600;
     }
 
     footer{
-      padding:26px 0 40px;
-      color:#6b7280;
-      border-top:1px solid rgba(232,236,245,.95);
-      background: rgba(255,255,255,.45);
-    }
-    .foot{
-      display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap;
-      align-items:center;
+      padding: 22px 0 34px;
+      color: rgba(15,23,42,.55);
+      font-size: 13px;
+      border-top: 1px solid rgba(15,23,42,.10);
+      background: rgba(248,249,255,.65);
     }
 
-    /* RESPONSIVE */
+    /* Responsive */
     @media (max-width: 980px){
-      h1{font-size:44px}
-      .hero-grid{grid-template-columns: 1fr; gap:16px}
-      .cards-3{grid-template-columns: 1fr}
-      .contact-grid{grid-template-columns: 1fr}
+      h1{font-size: 44px;}
+      .hero-grid{grid-template-columns:1fr; gap:18px;}
+      .grid-3{grid-template-columns:1fr; }
+      .product-stack{grid-template-columns:1fr;}
+      .grid-2{grid-template-columns:1fr;}
+      .industry-list{grid-template-columns: repeat(2, 1fr);}
+      .contact-wrap{grid-template-columns:1fr;}
+      .nav-links{display:none;}
+      .burger{display:inline-flex;}
+      .mobile-panel{display:none;}
     }
-
-    @media (max-width: 760px){
-      /* FIX #3: mobile nav doesn’t hide the logo */
-      .brand-logo{
-        height:38px;
-        max-width: 150px;
-      }
-      .nav-toggle{display:block}
-      .nav-links-wrapper{
-        display:none;
-        width:100%;
-        padding:10px 0 6px;
-        border-top:1px solid rgba(232,236,245,.95);
-      }
-      .nav-links-wrapper.open{display:block}
-      .nav-links{
-        flex-direction:column;
-        align-items:flex-start;
-        gap:6px;
-        margin-top:6px;
-      }
-      .nav-links a{width:100%; padding:10px 10px}
-      .btn-primary{width:100%; justify-content:center; margin-top:6px}
-      h1{font-size:40px}
+    @media (max-width: 520px){
+      h1{font-size: 38px;}
+      .brand{min-width: 120px;}
+      .brand img{height: 40px; max-width: 170px;}
+      .industry-list{grid-template-columns:1fr;}
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <div class="nav">
-        <div class="nav-left">
-          <!-- Logo ONLY (no extra text beside it) -->
-          <a href="#top" aria-label="VeloTech Home">
-            <img src="images/velotech-logo.png" alt="VeloTech logo" class="brand-logo">
-          </a>
-        </div>
 
-        <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
-          <span></span><span></span><span></span>
-        </button>
+<header>
+  <div class="wrap">
+    <div class="nav">
+      <a class="brand" href="#top" aria-label="VeloTech home">
+        <!-- LOGO ONLY (no text beside it) -->
+        <img
+          src="/images/velotech-logo.png?v=3"
+          alt="VeloTech logo"
+          onerror="this.onerror=null; this.src='images/velotech-logo.png?v=3';"
+        />
+      </a>
 
-        <div class="nav-links-wrapper" id="navLinks">
-          <nav class="nav-links" aria-label="Primary navigation">
-            <a href="#what-we-do">What We Do</a>
-            <a href="#products">Products &amp; Solutions</a>
-            <a href="#customers">Our Customers</a>
-            <a href="#approach">Why VeloTech</a>
-          </nav>
-          <a class="btn-primary" href="#contact">Let’s Talk</a>
-        </div>
-      </div>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#what-we-do">What We Do</a>
+        <a href="#products">Products &amp; Solutions</a>
+        <a href="#customers">Our Customers</a>
+        <a href="#why">Why VeloTech</a>
+        <a class="btn btn-primary" href="#contact">Let’s Talk</a>
+      </nav>
+
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobilePanel">
+        <span></span>
+      </button>
     </div>
-  </header>
 
-  <main id="top">
-    <!-- HERO -->
-    <div class="container hero">
+    <div class="mobile-panel" id="mobilePanel" aria-label="Mobile navigation">
+      <a href="#what-we-do" class="mLink">What We Do</a>
+      <a href="#products" class="mLink">Products &amp; Solutions</a>
+      <a href="#customers" class="mLink">Our Customers</a>
+      <a href="#why" class="mLink">Why VeloTech</a>
+      <a href="#contact" class="mLink">Let’s Talk</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
       <div class="hero-grid">
         <div>
-          <div class="kicker">FIJI • CYBERSECURITY • ENDPOINT • IT PROJECTS</div>
-          <h1>Secure, Managed &amp; Delivered IT for the <span class="accent">Pacific.</span></h1>
+          <div class="pill">FIJI • CYBERSECURITY • ENDPOINT • IT PROJECTS</div>
+          <h1>Secure, Managed &amp;<br>Delivered IT for the <span class="accent-word">Pacific.</span></h1>
 
           <p class="lead">
-            VeloTech helps organisations across <strong>Fiji Islands</strong> and the wider Pacific make the right cybersecurity and IT decisions — and then deliver projects with clear outcomes, governance and ongoing support.
+            VeloTech helps organisations across <strong>Fiji Islands</strong> and the wider Pacific make the right
+            cybersecurity and IT decisions — and then deliver projects with clear outcomes, governance and ongoing support.
           </p>
 
           <div class="cta-row">
-            <a class="btn-primary" href="#contact">Book a discussion</a>
-            <a class="btn-secondary" href="#products">View capabilities</a>
+            <a class="btn btn-primary" href="#contact">Book a discussion</a>
+            <a class="btn btn-ghost" href="#products">View capabilities</a>
           </div>
 
-          <div class="fineprint">
+          <div class="subtle">
             Vendor-agnostic guidance • Practical delivery discipline • Built for real environments
           </div>
         </div>
 
-        <!-- SNAPSHOT (updated text as you requested) -->
-        <aside class="snapshot" aria-label="VeloTech snapshot">
-          <div class="title">VeloTech Snapshot</div>
+        <aside class="card snapshot" aria-label="VeloTech snapshot">
+          <div class="kicker">VELOTECH SNAPSHOT</div>
           <h3>Security partner, not just a product reseller.</h3>
           <p>
             We help you assess, design, and implement cybersecurity and IT solutions that fit your environment —
             with vendor-agnostic advice and practical delivery support.
           </p>
-          <ul class="bullets">
+          <ul class="clean">
             <li>Cybersecurity consulting &amp; solution design</li>
             <li>Endpoint management &amp; monitoring</li>
             <li>Cloud &amp; backup projects</li>
@@ -444,322 +487,332 @@
         </aside>
       </div>
     </div>
+  </section>
 
-    <!-- WHAT WE DO -->
-    <section id="what-we-do">
-      <div class="container">
-        <h2 class="section-title">What We Do</h2>
-        <p class="section-sub">
-          Practical, vendor-neutral advice with strong delivery discipline — designed for organisations that need outcomes, not complexity.
-        </p>
+  <!-- WHAT WE DO -->
+  <section id="what-we-do">
+    <div class="wrap">
+      <h2 class="sec-title">What We Do</h2>
+      <p class="sec-sub">
+        Practical, outcome-driven services delivered with strong governance — designed for Fiji Islands and the Pacific region.
+      </p>
 
-        <div class="cards-3">
-          <div class="card">
-            <div class="eyebrow">Cyber &amp; Endpoint</div>
-            <h4>Cybersecurity &amp; Endpoint Management</h4>
-            <ul class="inline-bullets">
-              <li>Assess current cyber posture and controls</li>
-              <li>Design endpoint protection &amp; response approach</li>
-              <li>Operational monitoring and tuning support</li>
-            </ul>
-          </div>
+      <div class="grid-3">
+        <div class="tile">
+          <div class="tag">Cyber &amp; Endpoint</div>
+          <h4>Cybersecurity &amp; Endpoint Management</h4>
+          <p>Assess your current posture and implement controls that reduce risk and improve response readiness.</p>
+          <ul>
+            <li>Security posture &amp; gap assessments</li>
+            <li>EDR/XDR/MDR rollout &amp; onboarding support</li>
+            <li>Patch, asset &amp; device hygiene improvements</li>
+            <li>Security baselines &amp; hardening</li>
+          </ul>
+        </div>
 
-          <div class="card">
-            <div class="eyebrow">Projects &amp; Governance</div>
-            <h4>IT Project Management</h4>
-            <ul class="inline-bullets">
-              <li>Project scoping &amp; vendor coordination</li>
-              <li>Delivery governance &amp; reporting</li>
-              <li>Stakeholder and change management</li>
-            </ul>
-          </div>
+        <div class="tile">
+          <div class="tag">Projects &amp; Governance</div>
+          <h4>IT Project Management</h4>
+          <p>Keep delivery on track with stakeholder alignment, timelines, risk management and clear reporting.</p>
+          <ul>
+            <li>Project scoping &amp; vendor coordination</li>
+            <li>Delivery governance &amp; reporting</li>
+            <li>Change management support</li>
+            <li>Acceptance criteria &amp; handover</li>
+          </ul>
+        </div>
 
-          <div class="card">
-            <div class="eyebrow">Advisory</div>
-            <h4>Solution &amp; Product Advisory</h4>
-            <ul class="inline-bullets">
-              <li>Shortlisting tools &amp; platforms</li>
-              <li>Vendor-neutral recommendations</li>
-              <li>Support through evaluation &amp; POC</li>
-            </ul>
-          </div>
+        <div class="tile">
+          <div class="tag">Advisory</div>
+          <h4>Solution &amp; Product Advisory</h4>
+          <p>Vendor-neutral recommendations and practical implementation guidance — from shortlist to go-live.</p>
+          <ul>
+            <li>Shortlisting tools &amp; platforms</li>
+            <li>RFQ/RFP support &amp; evaluation</li>
+            <li>POC planning &amp; success criteria</li>
+            <li>Operational runbooks &amp; handover</li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- PRODUCTS -->
-    <section id="products">
-      <div class="container">
-        <h2 class="section-title">Products &amp; Solutions</h2>
-        <p class="section-sub">
-          Outcome-first solution bundles you can deploy and operate — mapped to your risk profile, environment, and budget.
-        </p>
+  <!-- PRODUCTS & SOLUTIONS -->
+  <section id="products">
+    <div class="wrap">
+      <h2 class="sec-title">Products &amp; Solutions</h2>
+      <p class="sec-sub">
+        We deliver integrated cybersecurity and IT outcomes. Below are the main solution areas we implement and support.
+      </p>
 
-        <!-- Row 1 (existing) -->
-        <div class="cards-3">
-          <div class="card">
-            <div class="eyebrow">Endpoint operations</div>
-            <h4>Unified Endpoint Management</h4>
-            <p>Device visibility, patching, automation, and governance to keep endpoints compliant and manageable.</p>
-            <ul class="inline-bullets">
-              <li>Endpoint inventory &amp; health</li>
-              <li>Patch &amp; compliance workflows</li>
-              <li>Policy-based management</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <div class="eyebrow">Security operations</div>
-            <h4>Threat Detection &amp; Response</h4>
-            <p>Detect, investigate, and respond with practical SOC-aligned workflows (without overcomplicating it).</p>
-            <ul class="inline-bullets">
-              <li>EDR / XDR / MDR guidance</li>
-              <li>Incident response runbooks</li>
-              <li>Hardening recommendations</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <div class="eyebrow">Cloud + ITSM</div>
-            <h4>Backup, Recovery &amp; Business Automation</h4>
-            <p>Resilience and operational efficiency — from backup strategies to service workflows.</p>
-            <ul class="inline-bullets">
-              <li>Cloud &amp; Microsoft 365 backup</li>
-              <li>Recovery planning</li>
-              <li>Automation &amp; service workflows</li>
-            </ul>
-          </div>
+      <div class="product-stack">
+        <div class="product-box">
+          <h4>Endpoint &amp; Device Management</h4>
+          <p class="desc">Unified endpoint visibility, monitoring, patching and lifecycle control.</p>
+          <ul class="clean">
+            <li>Endpoint management &amp; monitoring</li>
+            <li>Patch management &amp; software deployment</li>
+            <li>Mobile device management (MDM)</li>
+            <li>Asset inventory &amp; compliance reporting</li>
+          </ul>
         </div>
 
-        <!-- Row 2 (NEW) -->
-        <div class="cards-3">
-          <div class="card">
-            <div class="eyebrow">Identity security</div>
-            <h4>Identity &amp; MFA</h4>
-            <p>Reduce account takeovers with strong authentication controls aligned to your risk profile.</p>
-            <ul class="inline-bullets">
-              <li>MFA rollout &amp; policy design</li>
-              <li>Conditional access guidance</li>
-              <li>User adoption &amp; rollout support</li>
-            </ul>
-          </div>
+        <div class="product-box">
+          <h4>Identity &amp; Access Security</h4>
+          <p class="desc">Reduce account takeover and improve access control across your environment.</p>
+          <ul class="clean">
+            <li>Multi-Factor Authentication (MFA) solutions</li>
+            <li>Conditional access guidance</li>
+            <li>Privileged access hardening</li>
+            <li>Identity security best practices</li>
+          </ul>
+        </div>
 
-          <div class="card">
-            <div class="eyebrow">Connectivity</div>
-            <h4>Corporate Wi-Fi &amp; Network Security</h4>
-            <p>Secure wireless design for corporate environments — with practical segmentation and governance.</p>
-            <ul class="inline-bullets">
-              <li>Wi-Fi assessment &amp; design</li>
-              <li>Guest/corporate segmentation</li>
-              <li>Secure access &amp; visibility</li>
-            </ul>
-          </div>
+        <div class="product-box">
+          <h4>Threat Detection &amp; Response</h4>
+          <p class="desc">Detect faster, respond better — with practical playbooks and operational support.</p>
+          <ul class="clean">
+            <li>EDR / XDR / MDR implementation</li>
+            <li>Incident response readiness</li>
+            <li>Alert tuning &amp; response workflows</li>
+            <li>Security reporting &amp; dashboards</li>
+          </ul>
+        </div>
 
-          <div class="card">
-            <div class="eyebrow">Perimeter &amp; application</div>
-            <h4>Firewalls &amp; Web Application Firewall</h4>
-            <p>Protect your edge and critical applications with modern controls and tuned policies.</p>
-            <ul class="inline-bullets">
-              <li>Next-gen firewall design</li>
-              <li>WAF policy and protection</li>
-              <li>Secure exposure reduction</li>
-            </ul>
-          </div>
+        <div class="product-box">
+          <h4>Email &amp; Data Protection</h4>
+          <p class="desc">Protect core communication channels and critical data from loss and compromise.</p>
+          <ul class="clean">
+            <li>Email security controls</li>
+            <li>Cloud backup &amp; recovery</li>
+            <li>Data retention and recovery planning</li>
+            <li>Security awareness support</li>
+          </ul>
+        </div>
+
+        <div class="product-box">
+          <h4>Network &amp; Perimeter Security</h4>
+          <p class="desc">Harden the edge and reduce exposure with modern network controls.</p>
+          <ul class="clean">
+            <li>Firewalls &amp; secure perimeter design</li>
+            <li>Web Application Firewall (WAF)</li>
+            <li>Secure remote access patterns</li>
+            <li>Network segmentation guidance</li>
+          </ul>
+        </div>
+
+        <div class="product-box">
+          <h4>Corporate Wi-Fi &amp; Wireless Security</h4>
+          <p class="desc">Reliable wireless, properly secured — designed for real business environments.</p>
+          <ul class="clean">
+            <li>Corporate Wi-Fi solutions</li>
+            <li>Guest access &amp; segmentation</li>
+            <li>Wireless security best practices</li>
+            <li>Coverage planning &amp; rollout support</li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CUSTOMERS (Industry listing only) -->
-    <section id="customers">
-      <div class="container">
-        <h2 class="section-title">Our Customers</h2>
-        <p class="section-sub">
-          We support organisations that need reliable delivery across security, endpoint operations and IT governance.
-        </p>
+  <!-- CUSTOMERS (INDUSTRIES ONLY) -->
+  <section id="customers">
+    <div class="wrap">
+      <h2 class="sec-title">Our Customers</h2>
+      <p class="sec-sub">
+        We support organisations across Fiji Islands and the Pacific region — from operational environments to regulated sectors.
+      </p>
 
-        <div class="cards-3">
-          <div class="card">
-            <div class="eyebrow">Public sector</div>
-            <h4>Government &amp; State-Owned Enterprises</h4>
-            <p>Security and IT delivery support for services that can’t afford disruption.</p>
-          </div>
-          <div class="card">
-            <div class="eyebrow">Regulated</div>
-            <h4>Financial Services &amp; Insurance</h4>
-            <p>Controls, governance and operational discipline aligned to regulatory expectations.</p>
-          </div>
-          <div class="card">
-            <div class="eyebrow">Core services</div>
-            <h4>Utilities, Transport &amp; Ports</h4>
-            <p>Secure operations and project delivery across complex infrastructure environments.</p>
-          </div>
+      <div class="industry-list" aria-label="Industries we serve">
+        <div class="industry-pill">Government &amp; Authorities</div>
+        <div class="industry-pill">Ports &amp; Logistics</div>
+        <div class="industry-pill">Banking &amp; Finance</div>
+        <div class="industry-pill">Telecommunications</div>
+        <div class="industry-pill">Education</div>
+        <div class="industry-pill">Healthcare</div>
+        <div class="industry-pill">Utilities &amp; Energy</div>
+        <div class="industry-pill">Retail &amp; Services</div>
+        <div class="industry-pill">Hospitality</div>
+        <div class="industry-pill">Manufacturing</div>
+        <div class="industry-pill">NGOs &amp; Regional Bodies</div>
+        <div class="industry-pill">SMEs &amp; Mid-Market</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY VELOTECH -->
+  <section id="why">
+    <div class="wrap">
+      <h2 class="sec-title">Why VeloTech</h2>
+      <p class="sec-sub">
+        Strong outcomes come from the right decisions and disciplined delivery — not just technology.
+      </p>
+
+      <div class="grid-2">
+        <div class="tile">
+          <div class="tag">Vendor-Agnostic</div>
+          <h4>Best-fit solutions, not biased recommendations</h4>
+          <p>We focus on what fits your environment, risk profile, and operational reality — then help you implement it properly.</p>
+          <ul>
+            <li>Clear requirements &amp; success criteria</li>
+            <li>Practical implementation guidance</li>
+            <li>Operational handover you can run</li>
+          </ul>
         </div>
 
-        <div class="cards-3">
-          <div class="card">
-            <div class="eyebrow">People-first</div>
-            <h4>Education &amp; Healthcare</h4>
-            <p>Practical endpoint and security improvements with minimal disruption to users.</p>
-          </div>
-          <div class="card">
-            <div class="eyebrow">Private sector</div>
-            <h4>Retail, Hospitality &amp; Services</h4>
-            <p>Right-sized security and IT operations to support growth and uptime.</p>
-          </div>
-          <div class="card">
-            <div class="eyebrow">Regional</div>
-            <h4>Pacific Organisations</h4>
-            <p>Delivery support across Fiji Islands and the wider Pacific region.</p>
-          </div>
+        <div class="tile">
+          <div class="tag">Proven Delivery</div>
+          <h4>Secure projects, delivered with governance</h4>
+          <p>We bring project discipline to cybersecurity and IT — ensuring scope, timelines, risk and acceptance are managed.</p>
+          <ul>
+            <li>Stakeholder alignment and reporting</li>
+            <li>Risk and issue management</li>
+            <li>Clear acceptance and closure</li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- APPROACH -->
-    <section id="approach">
-      <div class="container">
-        <h2 class="section-title">Why VeloTech</h2>
-        <p class="section-sub">
-          You get strong governance, clear delivery outcomes, and advice that fits your environment — not a generic template.
-        </p>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <h2 class="sec-title">Let’s Talk</h2>
+      <p class="sec-sub">
+        Tell us what you’re trying to achieve. We’ll respond with practical next steps and options.
+      </p>
 
-        <div class="cards-3">
-          <div class="card">
-            <div class="eyebrow">Vendor-agnostic</div>
-            <h4>Best-fit decisions</h4>
-            <p>We help you choose what fits your environment and risk — not what looks best in a brochure.</p>
-          </div>
-          <div class="card">
-            <div class="eyebrow">Delivery discipline</div>
-            <h4>Secure projects, proven delivery</h4>
-            <p>We work alongside you through scoping, rollout, handover and operationalisation.</p>
-          </div>
-          <div class="card">
-            <div class="eyebrow">Operational focus</div>
-            <h4>Built for real operations</h4>
-            <p>Simple, maintainable solutions that your team can run — with support when needed.</p>
-          </div>
+      <div class="contact-wrap">
+        <!-- FORM (LEFT) -->
+        <div class="tile">
+          <div class="kicker">CONTACT FORM</div>
+
+          <!-- IMPORTANT: JS handles submit, so it stays on your website -->
+          <form id="contactForm" autocomplete="on">
+            <div>
+              <label for="name">Your name</label>
+              <input id="name" name="name" type="text" required />
+            </div>
+
+            <div>
+              <label for="email">Your email</label>
+              <input id="email" name="email" type="email" required />
+            </div>
+
+            <div>
+              <label for="company">Organisation (optional)</label>
+              <input id="company" name="company" type="text" />
+            </div>
+
+            <div>
+              <label for="message">How can we help?</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <button class="btn btn-primary" type="submit" id="submitBtn">Send message</button>
+
+            <div class="thanks" id="thanksBox">
+              Thanks — your message has been submitted successfully. We’ll be in touch shortly.
+            </div>
+          </form>
         </div>
-      </div>
-    </section>
 
-    <!-- CONTACT (form LEFT, info RIGHT like ClarityPac) -->
-    <section id="contact">
-      <div class="container">
-        <h2 class="section-title">Let’s Talk</h2>
-        <p class="section-sub">
-          Tell us what you’re trying to achieve — we’ll respond with the best next steps.
-        </p>
+        <!-- DETAILS (RIGHT) -->
+        <div class="tile">
+          <div class="kicker">CONTACT DETAILS</div>
+          <h4 style="margin:0 0 10px;">VeloTech</h4>
+          <p style="margin:0 0 12px; color:rgba(15,23,42,.64); line-height:1.7;">
+            Based in <strong>Fiji Islands</strong> — supporting customers across the wider Pacific region.
+          </p>
 
-        <div class="contact-grid">
-          <!-- LEFT: Form -->
-          <div class="panel">
-            <form id="contactForm" action="https://formspree.io/f/mvzbvron" method="POST">
-              <div class="field">
-                <label for="name">Name</label>
-                <input id="name" name="name" autocomplete="name" required />
+          <div style="display:grid; gap:10px; margin-top:10px;">
+            <div style="padding:12px; border-radius:16px; border:1px solid rgba(15,23,42,.10); background:rgba(255,255,255,.86);">
+              <div style="font-weight:800; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:rgba(15,23,42,.55);">Phone / WhatsApp</div>
+              <div style="margin-top:6px; font-weight:700;">(679) 701 6409</div>
+              <div style="margin-top:4px; color:rgba(15,23,42,.62); font-size:13px;">Available on WhatsApp</div>
+            </div>
+
+            <div style="padding:12px; border-radius:16px; border:1px solid rgba(15,23,42,.10); background:rgba(255,255,255,.86);">
+              <div style="font-weight:800; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:rgba(15,23,42,.55);">Typical engagement</div>
+              <div style="margin-top:6px; color:rgba(15,23,42,.68); font-size:14px; line-height:1.7;">
+                Discovery call → short assessment → plan &amp; delivery support.
               </div>
-
-              <div class="field">
-                <label for="company">Company</label>
-                <input id="company" name="company" autocomplete="organization" />
-              </div>
-
-              <div class="field">
-                <label for="phone">Phone (optional)</label>
-                <input id="phone" name="phone" autocomplete="tel" />
-              </div>
-
-              <div class="field">
-                <label for="message">What can we help with?</label>
-                <textarea id="message" name="message" required></textarea>
-              </div>
-
-              <div class="form-actions">
-                <button type="submit" class="btn-primary">Send message</button>
-                <span class="small-muted">You’ll see a confirmation here (no redirect to Formspree).</span>
-              </div>
-
-              <div id="formSuccess" class="success">Thanks — your message has been sent successfully. ✅</div>
-              <div id="formError" class="error">Sorry — something went wrong. Please try again or WhatsApp us. ❗</div>
-            </form>
-          </div>
-
-          <!-- RIGHT: Contact info (NO email shown) -->
-          <div class="panel">
-            <div class="card" style="box-shadow:none; border:none; padding:0; background:transparent;">
-              <div class="eyebrow">Contact</div>
-              <h4 style="margin-top:0;">VeloTech</h4>
-              <p style="margin-bottom:10px;">
-                Fiji Islands • Supporting the Pacific region
-              </p>
-
-              <ul class="inline-bullets" style="margin-top:0;">
-                <li><strong>Phone:</strong> (679) 701 6409</li>
-                <li><strong>WhatsApp:</strong> (679) 701 6409</li>
-              </ul>
-
-              <p class="small-muted" style="margin-top:12px;">
-                Typical response time: within 1 business day.
-              </p>
-
-              <!-- Thank-you anchor on-site -->
-              <div id="thanks" style="margin-top:14px;"></div>
             </div>
           </div>
+
+          <div style="margin-top:14px; color:rgba(15,23,42,.55); font-size:13px;">
+            Prefer a call? Submit the form with your best time and we’ll arrange a discussion.
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer>
-      <div class="container foot">
-        <div>© <span id="year"></span> VeloTech — Secure Projects. Proven Delivery.</div>
-        <div>Fiji Islands • Supporting the Pacific region</div>
-      </div>
-    </footer>
-  </main>
+</main>
 
-  <script>
-    function toggleNav(){
-      const el = document.getElementById('navLinks');
-      el.classList.toggle('open');
-    }
+<footer>
+  <div class="wrap">
+    © <span id="year"></span> VeloTech — Secure Projects. Proven Delivery.
+  </div>
+</footer>
 
-    document.getElementById('year').textContent = new Date().getFullYear();
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Formspree: keep user on VeloTech site + show thank you message
-    const form = document.getElementById('contactForm');
-    const ok = document.getElementById('formSuccess');
-    const err = document.getElementById('formError');
+  // Mobile menu
+  const burger = document.getElementById('burger');
+  const panel = document.getElementById('mobilePanel');
+  const mLinks = document.querySelectorAll('.mLink');
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      ok.style.display = 'none';
-      err.style.display = 'none';
+  burger.addEventListener('click', () => {
+    const isOpen = panel.style.display === 'block';
+    panel.style.display = isOpen ? 'none' : 'block';
+    burger.setAttribute('aria-expanded', String(!isOpen));
+  });
 
-      const data = new FormData(form);
+  mLinks.forEach(a => a.addEventListener('click', () => {
+    panel.style.display = 'none';
+    burger.setAttribute('aria-expanded', 'false');
+  }));
 
-      try{
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: data,
-          headers: { 'Accept': 'application/json' }
-        });
+  // Formspree: submit WITHOUT leaving website
+  const FORM_ENDPOINT = "https://formspree.io/f/mvzbvron";
+  const form = document.getElementById('contactForm');
+  const thanksBox = document.getElementById('thanksBox');
+  const submitBtn = document.getElementById('submitBtn');
 
-        if(res.ok){
-          form.reset();
-          ok.style.display = 'block';
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    thanksBox.style.display = "none";
 
-          // "redirect" back to your site section (no Formspree page)
-          location.hash = '#thanks';
-          document.getElementById('thanks').scrollIntoView({behavior:'smooth', block:'center'});
-        } else {
-          err.style.display = 'block';
-        }
-      } catch(ex){
-        err.style.display = 'block';
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending…";
+
+    try {
+      const formData = new FormData(form);
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        body: formData,
+        headers: { "Accept": "application/json" }
+      });
+
+      if (!res.ok) {
+        throw new Error("Submission failed");
       }
-    });
-  </script>
+
+      form.reset();
+      thanksBox.style.display = "block";
+      thanksBox.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    } catch (err) {
+      alert("Sorry — something went wrong sending your message. Please try again.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send message";
+    }
+  });
+</script>
+
 </body>
 </html>
