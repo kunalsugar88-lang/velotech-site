@@ -2,1056 +2,696 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>VeloTech – Secure Projects. Proven Delivery.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VeloTech — Secure Projects. Proven Delivery.</title>
   <meta
     name="description"
-    content="VeloTech helps organisations across Fiji and the Pacific make secure cybersecurity and IT decisions – and then deliver projects with clear outcomes, strong governance and ongoing support."
+    content="VeloTech helps organisations across Fiji and the Pacific assess, design, and implement cybersecurity and IT solutions with vendor-agnostic advice and practical delivery support."
   />
 
-  <!-- Google Fonts -->
+  <!-- Font (ClarityPac-style clean) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
 
   <style>
-    :root {
-      --bg: #f6f7ff;
+    :root{
+      --bg: #f7f7fb;
+      --bg-soft: #fbfbff;
       --card: #ffffff;
-      --text-main: #171827;
-      --text-soft: #5a5c7a;
+      --text: #171821;
+      --muted: #626680;
+      --border: rgba(20, 30, 60, 0.10);
+
+      /* Accent (keep the current indigo/purple vibe you liked) */
       --accent: #4b5cff;
-      --accent-soft: rgba(75, 92, 255, 0.12);
-      --accent-strong: #3d45ff;
-      --border-subtle: #e0e3ff;
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
-      --radius-lg: 24px;
-      --radius-pill: 999px;
+      --accent-2: #6c3bff;
+      --accent-soft: rgba(75, 92, 255, 0.10);
+      --shadow: 0 18px 45px rgba(18, 24, 52, 0.08);
+
+      --radius: 18px;
+      --radius-sm: 12px;
+      --max: 1120px;
     }
 
-    * {
-      box-sizing: border-box;
+    *{ box-sizing: border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 400px at 10% 0%, rgba(108,59,255,0.10), transparent 60%),
+                  radial-gradient(900px 400px at 90% 10%, rgba(75,92,255,0.10), transparent 60%),
+                  var(--bg);
+      color: var(--text);
     }
 
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #eef0ff 0, #f6f7ff 50%, #f8f8ff 100%);
-      color: var(--text-main);
-    }
+    a{ color: inherit; text-decoration: none; }
+    .container{ width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .page {
-      min-height: 100vh;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    /* HEADER / NAV */
-
-    header {
+    /* NAV */
+    header{
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(16px);
-      background: linear-gradient(
-        to bottom,
-        rgba(246, 247, 255, 0.95),
-        rgba(246, 247, 255, 0.9),
-        rgba(246, 247, 255, 0.85)
-      );
-      border-bottom: 1px solid rgba(224, 227, 255, 0.7);
+      z-index: 50;
+      background: rgba(247,247,251,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 18px;
       padding: 14px 0;
-      gap: 24px;
     }
 
-    .nav-left {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      min-width: 0;
+    .nav-left{
+      display:flex;
+      align-items:center;
+      gap: 14px;
+      min-width: 220px;
     }
 
-    .brand-link {
-      display: inline-flex;
-      align-items: center;
+    /* LOGO ONLY (no text beside it) */
+    .brand-logo{
+      display:flex;
+      align-items:center;
     }
-
-    .brand-logo {
-      height: 52px; /* bigger to use the high-res logo clearly */
+    .brand-logo img{
+      height: 46px;              /* crisp size */
       width: auto;
-      display: block;
+      display:block;
+      image-rendering: auto;     /* avoid pixelation */
+      -webkit-font-smoothing: antialiased;
+      transform: translateZ(0);  /* reduces blur in some browsers */
     }
 
-    .nav-links-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 20px;
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
+    .nav-links a{
       font-size: 14px;
-      color: #444763;
+      color: var(--muted);
+      padding: 10px 10px;
+      border-radius: 10px;
+      transition: background .2s ease, color .2s ease;
       white-space: nowrap;
     }
-
-    .nav-links a {
-      position: relative;
-      padding: 4px 0;
+    .nav-links a:hover{
+      background: var(--accent-soft);
+      color: var(--text);
     }
 
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -4px;
-      width: 0;
-      height: 2px;
+    .btn-primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff !important;
+      padding: 11px 16px;
       border-radius: 999px;
-      background: var(--accent);
-      transition: width 0.18s ease-out;
-    }
-
-    .nav-links a:hover::after {
-      width: 100%;
-    }
-
-    .btn-pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 26px;
-      border-radius: var(--radius-pill);
-      border: none;
-      background: radial-gradient(circle at 0 0, #7b82ff 0, #4b5cff 50%, #3f46ff 100%);
-      color: #ffffff;
       font-weight: 600;
-      font-size: 14px;
-      cursor: pointer;
-      box-shadow: 0 18px 35px rgba(75, 92, 255, 0.45);
-      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
-      white-space: nowrap;
+      box-shadow: 0 14px 35px rgba(75,92,255,0.22);
+      border: 1px solid rgba(255,255,255,0.18);
     }
+    .btn-primary:hover{ filter: brightness(1.02); }
 
-    .btn-pill:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 22px 42px rgba(63, 70, 255, 0.5);
+    .nav-toggle{
+      display:none;
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 12px;
+      padding: 10px 12px;
+      cursor:pointer;
+    }
+    .nav-toggle span{
+      display:block;
+      width: 20px; height: 2px;
+      background: var(--text);
+      margin: 4px 0;
+      border-radius: 2px;
     }
 
     /* HERO */
-
-    main {
-      padding: 40px 0 72px;
+    .hero{
+      padding: 46px 0 26px;
     }
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 3.2fr) minmax(0, 2.8fr);
-      gap: 40px;
-      align-items: center;
-      margin-top: 12px;
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items: start;
     }
-
-    .eyebrow {
-      font-size: 11px;
+    .kicker{
       letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: #8a8fb8;
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-
-    .eyebrow span {
-      margin: 0 4px;
-    }
-
-    .hero h1 {
-      font-size: 40px;
-      line-height: 1.1;
-      margin: 0 0 14px;
-    }
-
-    .hero h1 .accent {
-      color: var(--accent);
-    }
-
-    .hero-lead {
-      font-size: 15px;
-      line-height: 1.6;
-      color: var(--text-soft);
-      max-width: 540px;
-      margin-bottom: 22px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 24px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-subtle);
-      background: rgba(255, 255, 255, 0.9);
-      color: #383b5b;
-      font-weight: 500;
-      font-size: 14px;
-      cursor: pointer;
-      transition: background 0.12s ease-out, border-color 0.12s ease-out,
-        transform 0.1s ease-out;
-    }
-
-    .btn-outline:hover {
-      background: #ffffff;
-      border-color: #c4c8ff;
-      transform: translateY(-1px);
-    }
-
-    .hero-footnote {
+      color: var(--muted);
       font-size: 12px;
-      color: #8a8fb8;
-      margin-top: 8px;
+      margin: 4px 0 14px;
     }
-
-    .snapshot-card {
-      background: var(--card);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-      padding: 22px 24px 22px;
-      border: 1px solid rgba(224, 227, 255, 0.8);
+    h1{
+      margin: 0 0 12px;
+      font-size: clamp(34px, 4.6vw, 54px);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
     }
-
-    .snapshot-eyebrow {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: #8a8fb8;
+    .accent-word{
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 800;
+    }
+    .lead{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.7;
+      max-width: 58ch;
+    }
+    .cta-row{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 14px;
+    }
+    .btn-secondary{
+      background: #fff;
+      border: 1px solid rgba(75,92,255,0.35);
+      color: var(--accent);
+      padding: 11px 16px;
+      border-radius: 999px;
       font-weight: 600;
+      box-shadow: 0 10px 26px rgba(18,24,52,0.05);
+    }
+    .btn-secondary:hover{
+      background: rgba(75,92,255,0.05);
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .snapshot{
+      padding: 20px 20px 18px;
+    }
+    .snapshot-title{
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
       margin-bottom: 10px;
     }
-
-    .snapshot-card h3 {
-      font-size: 15px;
+    .snapshot h3{
       margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
     }
-
-    .snapshot-card p {
-      font-size: 14px;
-      line-height: 1.6;
-      color: var(--text-soft);
+    .snapshot p{
       margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 14px;
     }
-
-    .snapshot-card ul {
-      list-style: none;
+    .bullets{
       margin: 0;
-      padding: 0;
-      font-size: 13px;
-      color: #474966;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
     }
-
-    .snapshot-card li {
-      position: relative;
-      padding-left: 14px;
-      margin-bottom: 6px;
-    }
-
-    .snapshot-card li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
+    .bullets li::marker{
       color: var(--accent);
     }
 
     /* SECTIONS */
-
-    .section {
-      padding: 40px 0 8px;
+    section{
+      padding: 34px 0;
     }
-
-    .section-header {
-      margin-bottom: 18px;
-      max-width: 640px;
-    }
-
-    .section-header h2 {
-      font-size: 22px;
-      margin: 0 0 6px;
-    }
-
-    .section-header p {
-      margin: 0;
-      font-size: 14px;
-      color: var(--text-soft);
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
-
-    .cards-grid.two {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .cards-grid.one {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.96);
-      border-radius: 18px;
-      padding: 18px 18px 16px;
-      border: 1px solid rgba(224, 227, 255, 0.9);
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
-    }
-
-    .card h3 {
-      font-size: 15px;
-      margin: 0 0 6px;
-    }
-
-    .card p {
-      font-size: 13px;
-      color: var(--text-soft);
+    .section-title{
       margin: 0 0 8px;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+    }
+    .section-sub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 80ch;
+      font-size: 14.5px;
     }
 
-    .card ul {
+    .cards-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+    .service-card{
+      padding: 16px 16px 14px;
+    }
+    .service-kicker{
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .service-card h4{
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+    .service-card ul{
       margin: 0;
       padding-left: 18px;
-      font-size: 13px;
-      color: #4a4c67;
-    }
-
-    .card li {
-      margin-bottom: 4px;
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 6px;
-    }
-
-    .pill {
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(224, 227, 255, 0.9);
-      background: #f7f8ff;
-      font-size: 11px;
-      color: #5f6284;
-      white-space: nowrap;
-    }
-
-    /* CUSTOMERS */
-
-    .customer-logos {
-      margin-top: 14px;
-      padding-top: 12px;
-      border-top: 1px dashed rgba(224, 227, 255, 0.8);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      font-size: 11px;
-      color: #8a8fb8;
-    }
-
-    .logo-placeholder {
-      width: 74px;
-      height: 24px;
-      border-radius: 999px;
-      background: linear-gradient(
-        120deg,
-        rgba(224, 227, 255, 0.8),
-        rgba(246, 247, 255, 0.9)
-      );
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      color: #7478a4;
-    }
-
-    /* WHY VELOTECH */
-
-    .why-list {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      padding-left: 0;
-      list-style: none;
-      font-size: 13px;
-      color: #4a4c67;
-    }
-
-    .why-list li {
-      position: relative;
-      padding-left: 16px;
-    }
-
-    .why-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 7px;
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #7b82ff 0, #4b5cff 60%, #3742ff 100%);
-    }
-
-    /* CONTACT */
-
-    .contact-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 2.1fr);
-      gap: 26px;
-      align-items: flex-start;
-    }
-
-    .contact-summary {
+      color: var(--muted);
+      line-height: 1.75;
       font-size: 14px;
-      color: var(--text-soft);
     }
+    .service-card ul li::marker{ color: var(--accent); }
 
-    .contact-summary strong {
-      color: var(--text-main);
+    /* CUSTOMERS (Industry listing only) */
+    .industry-grid{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
     }
-
-    .contact-highlight {
-      margin-top: 10px;
+    .pill{
       padding: 10px 12px;
-      border-radius: 14px;
-      background: var(--accent-soft);
-      border: 1px solid rgba(75, 92, 255, 0.25);
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--muted);
       font-size: 13px;
-      color: #2d3060;
+      box-shadow: 0 10px 22px rgba(18,24,52,0.04);
     }
 
-    .contact-highlight span {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 3px;
+    /* WHY */
+    .why-grid{
+      display:grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 16px;
+      align-items: start;
+    }
+    .why-card{
+      padding: 18px 18px 16px;
+    }
+    .why-card h4{
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+    }
+    .why-card p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
     }
 
-    form {
-      margin-top: 2px;
+    /* CONTACT (Let’s Talk) */
+    .contact-grid{
+      display:grid;
+      grid-template-columns: 1.05fr 0.95fr; /* Form LEFT, Info RIGHT */
+      gap: 16px;
+      align-items: start;
     }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px 16px;
+    .contact-card{
+      padding: 18px;
     }
-
-    .form-grid .full {
-      grid-column: 1 / -1;
+    label{
+      display:block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      margin-top: 12px;
     }
-
-    label {
-      display: block;
-      font-size: 12px;
-      font-weight: 500;
-      color: #3e415d;
-      margin-bottom: 4px;
-    }
-
-    input,
-    textarea,
-    select {
-      width: 100%;
-      padding: 8px 10px;
-      border-radius: 10px;
-      border: 1px solid #d6daf8;
+    input, textarea{
+      width:100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 12px;
       font-family: inherit;
-      font-size: 13px;
+      font-size: 14px;
       outline: none;
-      background: rgba(255, 255, 255, 0.95);
-      transition: border-color 0.12s ease-out, box-shadow 0.12s ease-out;
+      background: #fff;
+    }
+    textarea{ min-height: 120px; resize: vertical; }
+    input:focus, textarea:focus{
+      border-color: rgba(75,92,255,0.55);
+      box-shadow: 0 0 0 4px rgba(75,92,255,0.10);
     }
 
-    input:focus,
-    textarea:focus,
-    select:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(75, 92, 255, 0.2);
-    }
-
-    textarea {
-      resize: vertical;
-      min-height: 80px;
-    }
-
-    .form-footnote {
-      font-size: 11px;
-      color: #8a8fb8;
-      margin-top: 6px;
-    }
-
-    .btn-submit {
-      margin-top: 10px;
-    }
-
-    footer {
-      border-top: 1px solid rgba(224, 227, 255, 0.8);
-      padding: 16px 0 22px;
-      font-size: 11px;
-      color: #8a8fb8;
-    }
-
-    footer .container {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
+    .form-actions{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      margin-top: 14px;
       flex-wrap: wrap;
+    }
+
+    .thankyou{
+      display:none;
+      margin: 0 0 12px;
+      padding: 12px 12px;
+      border-radius: 12px;
+      background: rgba(75,92,255,0.08);
+      border: 1px solid rgba(75,92,255,0.20);
+      color: #2b2f44;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    footer{
+      padding: 26px 0 40px;
+      color: var(--muted);
+      font-size: 13px;
     }
 
     /* RESPONSIVE */
-
-    @media (max-width: 960px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 24px;
-      }
-
-      .hero {
-        margin-top: 26px;
-      }
-
-      .cards-grid,
-      .cards-grid.two,
-      .why-list {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .contact-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .why-grid{ grid-template-columns: 1fr; }
+      .cards-3{ grid-template-columns: 1fr; }
+      .industry-grid{ grid-template-columns: repeat(2, 1fr); }
+      .contact-grid{ grid-template-columns: 1fr; }
+      .nav-left{ min-width: unset; }
     }
 
-    @media (max-width: 780px) {
-      .nav {
+    @media (max-width: 820px){
+      .nav-toggle{ display:block; }
+      .nav-links{
+        display:none;
+        width:100%;
+        justify-content: flex-start;
+        padding: 10px 0 6px;
+      }
+      .nav-links.is-open{ display:flex; }
+      .nav{
         flex-wrap: wrap;
-        justify-content: center;
-      }
-
-      .nav-links-wrapper {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 16px;
-      }
-
-      .brand-logo {
-        height: 46px;
-      }
-
-      main {
-        padding-top: 28px;
-      }
-
-      .hero h1 {
-        font-size: 32px;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .btn-pill,
-      .btn-outline {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .form-grid {
-        grid-template-columns: minmax(0, 1fr);
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="page" id="top">
-    <header>
-      <div class="container">
-        <div class="nav">
-          <div class="nav-left">
-            <a
-              href="#top"
-              class="brand-link"
-              aria-label="VeloTech – Secure Projects. Proven Delivery."
-            >
-              <img
-                src="images/velotech-logo.png"
-                alt="VeloTech logo"
-                class="brand-logo"
-              />
-            </a>
-          </div>
-
-          <div class="nav-links-wrapper">
-            <nav class="nav-links" aria-label="Main navigation">
-              <a href="#what-we-do">What We Do</a>
-              <a href="#products">Products &amp; Solutions</a>
-              <a href="#customers">Our Customers</a>
-              <a href="#approach">Why VeloTech</a>
-            </nav>
-            <a href="#contact" class="btn-pill">Let’s Talk</a>
-          </div>
+  <!-- NAV -->
+  <header>
+    <div class="container">
+      <div class="nav">
+        <div class="nav-left">
+          <!-- LOGO ONLY -->
+          <a class="brand-logo" href="#top" aria-label="VeloTech home">
+            <img src="images/velotech-logo.png" alt="VeloTech logo" />
+          </a>
         </div>
+
+        <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+          <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="#what-we-do">What We Do</a>
+          <a href="#products">Products &amp; Solutions</a>
+          <a href="#customers">Our Customers</a>
+          <a href="#why">Why VeloTech</a>
+          <a href="#contact" class="btn-primary">Let’s Talk</a>
+        </nav>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <div class="container">
-        <!-- HERO -->
-        <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-left">
-            <div class="eyebrow">
-              FIJI <span>•</span> CYBERSECURITY <span>•</span> ENDPOINT
-              <span>•</span> IT PROJECTS
-            </div>
-            <h1 id="hero-title">
+  <!-- HERO -->
+  <main id="top">
+    <div class="container">
+      <section class="hero">
+        <div class="hero-grid">
+          <div>
+            <div class="kicker">FIJI • CYBERSECURITY • ENDPOINT • IT PROJECTS</div>
+            <h1>
               Secure, Managed &amp;<br />
-              Delivered IT for the <span class="accent">Pacific.</span>
+              Delivered IT for the <span class="accent-word">Pacific</span>.
             </h1>
-            <p class="hero-lead">
-              VeloTech helps organisations across Fiji and the Pacific make the
-              right cybersecurity and IT decisions – and then deliver projects
-              with clear outcomes, strong governance and ongoing support.
+            <p class="lead">
+              VeloTech helps organisations across Fiji Islands and the Pacific make the right cybersecurity and IT
+              decisions — and then deliver projects with clear outcomes, governance and ongoing support.
             </p>
 
-            <div class="hero-actions">
-              <a href="#contact" class="btn-pill">Book a discussion</a>
-              <a href="#products" class="btn-outline">View capabilities</a>
+            <div class="cta-row">
+              <a class="btn-primary" href="#contact">Book a discussion</a>
+              <a class="btn-secondary" href="#what-we-do">View capabilities</a>
             </div>
-
-            <p class="hero-footnote">
-              Based in <strong>Nakasi, Fiji Islands</strong> – supporting
-              customers across Fiji and the wider Pacific region.
-            </p>
           </div>
 
-          <!-- SNAPSHOT CARD -->
-          <aside class="snapshot-card" aria-label="VeloTech Snapshot">
-            <div class="snapshot-eyebrow">VELOTECH SNAPSHOT</div>
+          <aside class="card snapshot" aria-label="VeloTech Snapshot">
+            <div class="snapshot-title">VELOTECH SNAPSHOT</div>
             <h3>Security partner, not just a product reseller.</h3>
             <p>
-              We help you assess, design, and implement cybersecurity and IT
-              solutions that fit your environment – with vendor-agnostic advice
-              and practical delivery support.
+              We help you assess, design, and implement cybersecurity and IT solutions that fit your environment —
+              with vendor-agnostic advice and practical delivery support.
             </p>
-            <ul>
+            <ul class="bullets">
               <li>Cybersecurity consulting &amp; solution design</li>
               <li>Endpoint management &amp; monitoring</li>
               <li>Cloud &amp; backup projects</li>
               <li>IT project management &amp; governance</li>
             </ul>
           </aside>
-        </section>
+        </div>
+      </section>
 
-        <!-- WHAT WE DO -->
-        <section id="what-we-do" class="section">
-          <div class="section-header">
-            <h2>What We Do</h2>
+      <!-- WHAT WE DO -->
+      <section id="what-we-do">
+        <h2 class="section-title">What We Do</h2>
+        <p class="section-sub">
+          Practical, vendor-neutral advice with strong delivery discipline — so your cybersecurity and IT projects land
+          properly in the real world.
+        </p>
+
+        <div class="cards-3">
+          <div class="card service-card">
+            <div class="service-kicker">Cyber &amp; Endpoint</div>
+            <h4>Cybersecurity &amp; Endpoint Management</h4>
+            <ul>
+              <li>Current-state assessment &amp; risk baseline</li>
+              <li>EDR/XDR/MDR design &amp; rollout planning</li>
+              <li>Policy, hardening, and operational runbooks</li>
+              <li>Monitoring and continuous improvement</li>
+            </ul>
+          </div>
+
+          <div class="card service-card">
+            <div class="service-kicker">Projects &amp; Governance</div>
+            <h4>IT Project Management</h4>
+            <ul>
+              <li>Project scoping &amp; vendor coordination</li>
+              <li>Delivery governance &amp; reporting</li>
+              <li>Stakeholder &amp; change management</li>
+              <li>Quality checks and outcomes tracking</li>
+            </ul>
+          </div>
+
+          <div class="card service-card">
+            <div class="service-kicker">Advisory</div>
+            <h4>Solution &amp; Product Advisory</h4>
+            <ul>
+              <li>Shortlisting tools &amp; platforms</li>
+              <li>Vendor-neutral recommendations</li>
+              <li>Support through evaluation &amp; POC</li>
+              <li>Implementation planning &amp; handover</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section id="products">
+        <h2 class="section-title">Products &amp; Solutions</h2>
+        <p class="section-sub">
+          We support customers with outcomes-first solution bundles — from endpoint management to cybersecurity operations and business automation.
+        </p>
+
+        <div class="cards-3">
+          <div class="card service-card">
+            <div class="service-kicker">Endpoint Operations</div>
+            <h4>Unified Endpoint Management</h4>
+            <ul>
+              <li>Inventory, patching, remote support</li>
+              <li>Device compliance and reporting</li>
+              <li>Mobile device management (MDM)</li>
+              <li>Documentation &amp; SOPs</li>
+            </ul>
+          </div>
+
+          <div class="card service-card">
+            <div class="service-kicker">Security Operations</div>
+            <h4>Threat Detection &amp; Response</h4>
+            <ul>
+              <li>EDR/XDR/MDR integration</li>
+              <li>Incident response playbooks</li>
+              <li>Email &amp; identity security hygiene</li>
+              <li>Security posture reviews</li>
+            </ul>
+          </div>
+
+          <div class="card service-card">
+            <div class="service-kicker">Cloud &amp; Automation</div>
+            <h4>Backup, Recovery &amp; Business Automation</h4>
+            <ul>
+              <li>Cloud backup and recovery planning</li>
+              <li>Business workflow automation</li>
+              <li>IT service management foundations</li>
+              <li>Governance and rollout support</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- CUSTOMERS -->
+      <section id="customers">
+        <h2 class="section-title">Our Customers</h2>
+        <p class="section-sub">
+          We work with organisations across a wide range of industries in Fiji Islands and the broader Pacific region.
+        </p>
+
+        <!-- Industry listing only (as requested) -->
+        <div class="industry-grid" aria-label="Industries we support">
+          <div class="pill">Government &amp; Public Sector</div>
+          <div class="pill">Ports, Logistics &amp; Transport</div>
+          <div class="pill">Banking &amp; Financial Services</div>
+          <div class="pill">Telecommunications</div>
+          <div class="pill">Utilities &amp; Energy</div>
+          <div class="pill">Education</div>
+          <div class="pill">Healthcare</div>
+          <div class="pill">NGOs &amp; Development Partners</div>
+          <div class="pill">Retail &amp; FMCG</div>
+          <div class="pill">Hospitality &amp; Tourism</div>
+          <div class="pill">Professional Services</div>
+          <div class="pill">SMEs &amp; Multi-site Businesses</div>
+        </div>
+      </section>
+
+      <!-- WHY -->
+      <section id="why">
+        <h2 class="section-title">Why VeloTech</h2>
+        <p class="section-sub">
+          You get vendor-agnostic guidance and delivery support — with a focus on governance, outcomes, and long-term operational success.
+        </p>
+
+        <div class="why-grid">
+          <div class="card why-card">
+            <h4>Vendor-neutral, outcomes-first</h4>
             <p>
-              We align secure architecture, endpoint management and project
-              delivery so your cybersecurity and IT investments actually land.
+              We start with your goals and environment, then recommend what fits — not what’s trending. We help you evaluate options, run POCs,
+              and implement with clear success measures.
             </p>
           </div>
 
-          <div class="cards-grid">
-            <div class="card">
-              <h3>Cybersecurity &amp; Endpoint</h3>
-              <p>
-                Practical security and endpoint services that improve your
-                posture without over-complicating your operations.
-              </p>
-              <ul>
-                <li>Current-state cybersecurity posture assessments</li>
-                <li>Security roadmap &amp; prioritised remediation plans</li>
-                <li>Endpoint management &amp; monitoring (servers, PCs, laptops)</li>
-                <li>Policy, hardening and security standards alignment</li>
-              </ul>
-            </div>
-
-            <div class="card">
-              <h3>IT Project Management</h3>
-              <p>
-                Vendor-neutral project leadership so implementations land on
-                time, in budget – and actually adopted by your teams.
-              </p>
-              <ul>
-                <li>Project scoping, RFP support &amp; vendor coordination</li>
-                <li>Implementation, cutover and change management</li>
-                <li>Risk, issue &amp; dependency tracking and reporting</li>
-                <li>Benefits tracking and handover to BAU teams</li>
-              </ul>
-            </div>
-
-            <div class="card">
-              <h3>Solution &amp; Product Advisory</h3>
-              <p>
-                Independent guidance on tools, platforms and services that
-                match your risk profile, budget and in-house capability.
-              </p>
-              <ul>
-                <li>Tool shortlisting and comparative evaluations</li>
-                <li>Proof-of-concept planning and success criteria</li>
-                <li>Commercials review and optimisation</li>
-                <li>Support through evaluation, POC and go-live</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- PRODUCTS & SOLUTIONS -->
-        <section id="products" class="section">
-          <div class="section-header">
-            <h2>Products &amp; Solutions</h2>
+          <div class="card why-card">
+            <h4>Secure Projects. Proven Delivery.</h4>
             <p>
-              VeloTech combines proven security and IT operations platforms with
-              local delivery, governance and support – without locking you into
-              a single vendor.
+              Strong project governance, practical documentation, and clean handover. We focus on making sure solutions are adopted, maintained,
+              and measurable — not just “installed”.
             </p>
           </div>
+        </div>
+      </section>
 
-          <div class="cards-grid">
-            <div class="card">
-              <h3>Endpoint &amp; Device Management</h3>
-              <p>
-                Centralised management for servers, laptops and devices – built
-                for Pacific organisations with mixed fleets.
-              </p>
-              <ul>
-                <li>Unified endpoint monitoring &amp; patching</li>
-                <li>Asset inventory &amp; lifecycle management</li>
-                <li>Remote support and secure access for IT teams</li>
-                <li>Mobile device management (phones &amp; tablets)</li>
-              </ul>
+      <!-- CONTACT -->
+      <section id="contact">
+        <h2 class="section-title">Let’s Talk</h2>
+        <p class="section-sub">
+          Share what you’re trying to achieve and we’ll come back with a clear next step.
+        </p>
+
+        <div class="contact-grid">
+          <!-- FORM (LEFT) -->
+          <div class="card contact-card">
+            <div class="thankyou" id="thankyouBox">
+              ✅ Thanks — your message has been received. We’ll be in touch shortly.
             </div>
 
-            <div class="card">
-              <h3>Security Operations &amp; MDR</h3>
-              <p>
-                24×7 security coverage without needing a full in-house SOC
-                team.
-              </p>
-              <ul>
-                <li>Endpoint detection &amp; response (EDR/XDR)</li>
-                <li>Managed detection &amp; response (MDR) services</li>
-                <li>Email and identity security controls</li>
-                <li>Security runbooks &amp; incident response playbooks</li>
-              </ul>
-            </div>
+            <!-- Formspree -->
+            <form action="https://formspree.io/f/mvzbvron" method="POST">
+              <!-- Redirect back to your site (Option A) -->
+              <input type="hidden" name="_next" value="https://velotech.com.fj/#contact?submitted=1" />
 
-            <div class="card">
-              <h3>Cloud Backup &amp; Resilience</h3>
-              <p>
-                Resilient data protection so you can recover quickly from
-                outages, ransomware and accidental deletion.
-              </p>
-              <ul>
-                <li>Microsoft 365 &amp; cloud backup strategies</li>
-                <li>On-prem and hybrid backup modernisation</li>
-                <li>Recovery runbooks and DR exercises</li>
-                <li>Retention, compliance &amp; governance controls</li>
-              </ul>
-            </div>
-          </div>
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
 
-          <div class="cards-grid two" style="margin-top: 16px;">
-            <div class="card">
-              <h3>Secure Network &amp; Wi-Fi</h3>
-              <p>
-                Secure connectivity for branches, campuses and remote workers,
-                aligned to least-privilege principles.
-              </p>
-              <ul>
-                <li>Next-gen firewall and secure remote access design</li>
-                <li>Wi-Fi design with security &amp; guest access controls</li>
-                <li>Segmentation and zero-trust-aligned policies</li>
-                <li>Monitoring and reporting for compliance</li>
-              </ul>
-            </div>
+              <label for="company">Company</label>
+              <input id="company" name="company" type="text" autocomplete="organization" />
 
-            <div class="card">
-              <h3>Automation &amp; Service Management</h3>
-              <p>
-                Streamlined IT service processes that reduce manual effort and
-                give better visibility to the business.
-              </p>
-              <ul>
-                <li>ITSM workflows for incident, request &amp; change</li>
-                <li>Automation of common service tasks</li>
-                <li>Self-service portals for staff &amp; branches</li>
-                <li>Reporting and SLA dashboards for leadership</li>
-              </ul>
-            </div>
-          </div>
-        </section>
+              <label for="phone">Phone / WhatsApp</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(679) 701 6409" />
 
-        <!-- OUR CUSTOMERS -->
-        <section id="customers" class="section">
-          <div class="section-header">
-            <h2>Our Customers</h2>
-            <p>
-              VeloTech works with organisations that run critical services for
-              Fiji and the Pacific – where uptime, security and compliance
-              matter.
-            </p>
-          </div>
+              <label for="message">How can we help?</label>
+              <textarea id="message" name="message" required placeholder="Tell us what you’re working on…"></textarea>
 
-          <div class="cards-grid">
-            <div class="card">
-              <h3>Financial &amp; Critical Services</h3>
-              <ul>
-                <li>Banks &amp; financial institutions</li>
-                <li>Insurance &amp; superannuation providers</li>
-                <li>Government ministries &amp; statutory bodies</li>
-                <li>Utilities – power, water &amp; transport agencies</li>
-              </ul>
-            </div>
-
-            <div class="card">
-              <h3>Infrastructure &amp; Enterprise</h3>
-              <ul>
-                <li>Telecom &amp; ISP operators</li>
-                <li>Ports, airports &amp; logistics operators</li>
-                <li>Large enterprises &amp; state-owned entities</li>
-                <li>Industrial, manufacturing &amp; energy sites</li>
-              </ul>
-            </div>
-
-            <div class="card">
-              <h3>Education, Health &amp; Non-Profit</h3>
-              <ul>
-                <li>Universities, colleges &amp; schools</li>
-                <li>Hospitals &amp; healthcare providers</li>
-                <li>Regional agencies &amp; NGOs</li>
-                <li>Faith-based and community organisations</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="customer-logos">
-            <span>Preferred partner to Pacific enterprises and agencies.</span>
-            <span class="logo-placeholder">Bank</span>
-            <span class="logo-placeholder">Ports</span>
-            <span class="logo-placeholder">Energy</span>
-            <span class="logo-placeholder">Govt</span>
-            <span class="logo-placeholder">NGO</span>
-          </div>
-        </section>
-
-        <!-- WHY VELOTECH -->
-        <section id="approach" class="section">
-          <div class="section-header">
-            <h2>Why VeloTech</h2>
-            <p>
-              Built in Fiji for the Pacific – combining global-grade solutions
-              with local context, relationships and delivery experience.
-            </p>
-          </div>
-
-          <div class="cards-grid two">
-            <div class="card">
-              <h3>Secure Projects. Proven Delivery.</h3>
-              <ul class="why-list">
-                <li>14+ years in ICT, cybersecurity and complex projects</li>
-                <li>Hands-on delivery for large enterprise &amp; government</li>
-                <li>Clear governance, reporting and risk management</li>
-                <li>Outcome-driven – not just “install and leave”</li>
-              </ul>
-            </div>
-
-            <div class="card">
-              <h3>Vendor-Agnostic, Pacific-Focused.</h3>
-              <ul class="why-list">
-                <li>Independent recommendations, not tied to one vendor</li>
-                <li>Experience working across Fiji &amp; wider Pacific markets</li>
-                <li>Designed for local bandwidth, skills and budgets</li>
-                <li>Long-term partnership mindset with customers</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact" class="section">
-          <div class="section-header">
-            <h2>Let’s Talk</h2>
-            <p>
-              Share a bit about your environment and goals, and we’ll come back
-              with practical options – not a hard sell.
-            </p>
-          </div>
-
-          <div class="contact-layout">
-            <div class="contact-summary">
-              <p>
-                VeloTech is based in <strong>Nakasi, Fiji Islands</strong>,
-                working with customers across Fiji and the wider Pacific.
-              </p>
-              <div class="contact-highlight">
-                <span>Call or WhatsApp</span>
-                <div><strong>+679 701 6409</strong></div>
-                <div style="font-size: 12px; margin-top: 4px;">
-                  Best for quick questions, scoping a project or arranging a
-                  workshop with your team.
-                </div>
+              <div class="form-actions">
+                <button class="btn-primary" type="submit">Send message</button>
+                <a class="btn-secondary" href="tel:+6797016409">Call (679) 701 6409</a>
               </div>
-              <p style="margin-top: 12px;">
-                Or, send a quick summary using the form and we’ll follow up with
-                clarifying questions and suggested next steps.
-              </p>
-            </div>
-
-            <div>
-              <!-- NOTE: replace the Formspree URL with your real form ID -->
-              <form
-                action="https://formspree.io/f/mvzbvron"
-                method="POST"
-              >
-                <div class="form-grid">
-                  <div>
-                    <label for="name">Name</label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      autocomplete="name"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label for="company">Organisation</label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      autocomplete="organization"
-                    />
-                  </div>
-
-                  <div>
-                    <label for="phone">Phone / WhatsApp</label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      placeholder="+679 701 6409"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label for="email">Email (optional)</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      autocomplete="email"
-                    />
-                  </div>
-
-                  <div class="full">
-                    <label for="topic">What would you like help with?</label>
-                    <select id="topic" name="topic">
-                      <option value="">Select an option</option>
-                      <option value="cyber">Cybersecurity posture &amp; roadmap</option>
-                      <option value="endpoint">Endpoint / device management</option>
-                      <option value="project">IT project delivery &amp; governance</option>
-                      <option value="backup">Backup, DR &amp; resilience</option>
-                      <option value="advisory">Product &amp; solution advisory</option>
-                      <option value="other">Something else</option>
-                    </select>
-                  </div>
-
-                  <div class="full">
-                    <label for="message">Short background</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      placeholder="Example: We have 300+ endpoints, multiple sites and a mix of on-prem + cloud services. Looking for help with..."
-                      required
-                    ></textarea>
-                  </div>
-                </div>
-
-                <div class="form-footnote">
-                  By submitting this form you agree to be contacted by VeloTech
-                  about this enquiry. Your details will not be shared with third
-                  parties.
-                </div>
-
-                <button type="submit" class="btn-pill btn-submit">
-                  Submit enquiry
-                </button>
-              </form>
-            </div>
+            </form>
           </div>
-        </section>
-      </div>
-    </main>
 
-    <footer>
-      <div class="container">
-        <div>© <span id="year"></span> VeloTech. Secure Projects. Proven Delivery.</div>
-        <div>Serving Fiji &amp; Pacific organisations from Nakasi, Fiji Islands.</div>
-      </div>
-    </footer>
-  </div>
+          <!-- INFO (RIGHT) -->
+          <div class="card contact-card">
+            <div class="service-kicker">Contact</div>
+            <h4 style="margin:0 0 10px;">Get in touch</h4>
+            <p style="margin:0 0 12px; color: var(--muted); line-height: 1.75; font-size: 14px;">
+              Phone: <strong>(679) 701 6409</strong> (also available on WhatsApp).<br />
+              Location: <strong>Fiji Islands</strong>, supporting the Pacific region.
+            </p>
+
+            <div class="service-kicker" style="margin-top:14px;">What to include</div>
+            <ul class="bullets" style="margin-top:8px;">
+              <li>What problem you’re solving</li>
+              <li>Approx endpoint/user count (if relevant)</li>
+              <li>Timeline and key stakeholders</li>
+              <li>Any compliance requirements (e.g., ISO 27001)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        © <span id="year"></span> VeloTech — Secure Projects. Proven Delivery.
+      </footer>
+    </div>
+  </main>
 
   <script>
-    // Simple year update for footer
-    document.getElementById("year").textContent = new Date().getFullYear();
+    function toggleNav(){
+      const el = document.getElementById('navLinks');
+      el.classList.toggle('is-open');
+    }
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Thank-you message on return from Formspree (Option A)
+    (function(){
+      try{
+        const submitted = window.location.hash.includes("submitted=1") || window.location.search.includes("submitted=1");
+        if(submitted){
+          const box = document.getElementById('thankyouBox');
+          if(box) box.style.display = 'block';
+          // Optional: clean URL so it doesn't stay forever
+          // Comment out the next line if you want to keep the submitted flag visible.
+          history.replaceState(null, "", "#contact");
+        }
+      }catch(e){}
+    })();
   </script>
 </body>
 </html>
