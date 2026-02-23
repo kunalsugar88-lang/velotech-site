@@ -91,10 +91,11 @@
     }
 
  .brand-logo {
-  height: 48px;              /* try 44–52px, tweak to what looks best */
-  max-height: 48px;
-  width: auto;               /* keep aspect ratio, no stretching */
+  height: 56px;              /* try 56, we can tweak to 52/60 later */
+  max-height: 56px;
+  width: auto;               /* keep aspect ratio */
   display: block;
+  object-fit: contain;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
 }
@@ -624,12 +625,6 @@
         font-size: 26px;
       }
     }
-/* VeloTech header logo + brand text */
-.brand-logo {
-  height: 40px;
-  margin-right: 0.75rem;
-  display: block;
-}
 
 .brand-text {
   display: flex;
