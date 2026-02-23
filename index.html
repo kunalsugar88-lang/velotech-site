@@ -626,6 +626,39 @@
         font-size: 26px;
       }
     }
+/* VeloTech header logo + brand text */
+.brand-logo {
+  height: 40px;
+  margin-right: 0.75rem;
+  display: block;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.brand-tagline {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+@media (max-width: 640px) {
+  .brand-logo {
+    height: 32px;
+  }
+
+  .brand-tagline {
+    display: none; /* hide tagline on very small screens */
+  }
+}
+    
   </style>
 </head>
 <body>
