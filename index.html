@@ -91,26 +91,10 @@
     }
 
     .brand-logo {
-      height: 38px;
-      width: auto;
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-name {
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-
-    .brand-tagline {
-      font-size: 11px;
-      color: var(--text-muted);
+  height: 52px;        /* bigger = clearer */
+  display: block;
+  margin-right: 0;     /* no extra gap (no text now) */
+}
     }
 
     .nav-links {
@@ -668,11 +652,9 @@
     <div class="nav">
       <div class="nav-left">
         <!-- Replace src with your correct logo path -->
-        <img src="images/velotech-logo.png" alt="VeloTech logo" class="brand-logo" />
-        <div class="brand-text">
-          <div class="brand-name">VeloTech</div>
-          <div class="brand-tagline">Secure Projects. Proven Delivery.</div>
-        </div>
+       <img src="images/velotech-logo.png"
+     alt="VeloTech – Secure Projects. Proven Delivery."
+     class="brand-logo" />
       </div>
 
       <button class="nav-toggle" aria-label="Toggle navigation">
